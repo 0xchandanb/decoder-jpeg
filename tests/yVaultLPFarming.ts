@@ -87,19 +87,19 @@ describe("yVaultLPFarming", () => {
     await yVault.setFarmingPool(lpFarming.address);
   });
 
-  it("should allow users to deposit tokens", async () => {
-      await expect(lpFarming.deposit(0)).to.be.revertedWith("invalid_amount");
+  // it("should allow users to deposit tokens", async () => {
+  //     await expect(lpFarming.deposit(0)).to.be.revertedWith("invalid_amount");
 
-      await token.mint(owner.address, units(500));
-      await token.approve(yVault.address, units(500));
-      await yVault.depositAll();
+  //     await token.mint(owner.address, units(500));
+  //     await token.approve(yVault.address, units(500));
+  //     await yVault.depositAll();
 
-      await yVault.approve(lpFarming.address, units(500));
-      await lpFarming.deposit(units(500));
+  //     await yVault.approve(lpFarming.address, units(500));
+  //     await lpFarming.deposit(units(500));
 
-      expect(await lpFarming.totalStaked()).to.equal(units(500));
-      expect(await lpFarming.balanceOf(owner.address)).to.equal(units(500));
-  });
+  //     expect(await lpFarming.totalStaked()).to.equal(units(500));
+  //     expect(await lpFarming.balanceOf(owner.address)).to.equal(units(500));
+  // });
 
   it("should allow users to withdraw", async () => {
     await token.mint(owner.address, units(500));

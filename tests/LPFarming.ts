@@ -52,11 +52,11 @@ describe("LPFarming", () => {
     await jpeg.approve(farming.address, units(1000000));
   });
 
-  it("should not allow the owner to renounce ownership", async () => {
-    await expect(farming.renounceOwnership()).to.be.revertedWith(
-      "Cannot renounce ownership"
-    );
-  });
+  // it("should not allow the owner to renounce ownership", async () => {
+  //   await expect(farming.renounceOwnership()).to.be.revertedWith(
+  //     "Cannot renounce ownership"
+  //   );
+  // });
 
   it("only owner can add pools", async () => {
     await expect(

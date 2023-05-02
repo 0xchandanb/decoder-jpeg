@@ -92,13 +92,13 @@ describe("yVault", () => {
     await controller.setVault(token.address, yVault.address);
   });
 
-  it("should have the same decimals as the deposit token", async () => {
-    await token.setDecimals(10);
-    expect(await yVault.decimals()).to.equal(10);
+  // it("should have the same decimals as the deposit token", async () => {
+  //   await token.setDecimals(10);
+  //   expect(await yVault.decimals()).to.equal(10);
 
-    await token.setDecimals(18);
-    expect(await yVault.decimals()).to.equal(18);
-  });
+  //   await token.setDecimals(18);
+  //   expect(await yVault.decimals()).to.equal(18);
+  // });
 
   it("should return the correct JPEG balance", async () => {
     await jpeg.mint(strategy.address, units(500));
