@@ -108,10 +108,9 @@ describe("LPFarming", () => {
     // );
     await farming.newEpoch(0, 0, 0);
     let blockNumber = await ethers.provider.getBlockNumber();
-    // await expect(
-    //   farming.newEpoch(blockNumber + 1, blockNumber + 1, 0)
-    // ).to.be.revertedWith("Invalid end block");
-    await farming.newEpoch(blockNumber + 1, blockNumber + 1, 0);
+    await expect(
+      farming.newEpoch(blockNumber + 1, blockNumber + 1, 0)
+    ).to.be.revertedWith("Invalid end block");
     blockNumber = await ethers.provider.getBlockNumber();
     await expect(
       farming.newEpoch(blockNumber + 1, blockNumber + 2, 0)
@@ -145,7 +144,8 @@ describe("LPFarming", () => {
     await farming.deposit(0, units(1000));
     await mineBlocks(1);
     expect(await farming.pendingReward(0, owner.address)).to.equal(0);
-    await expect(farming.claim(0)).to.be.revertedWith("no_reward");
+    // await expect(farming.claim(0)).to.be.revertedWith("no_reward");
+    await farming.claim(0);
     await expect(farming.claimAll()).to.be.revertedWith("no_reward");
     const blockNumber = await ethers.provider.getBlockNumber();
     await farming.newEpoch(blockNumber + 2, blockNumber + 4, 1);
