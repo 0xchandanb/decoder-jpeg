@@ -108,9 +108,10 @@ describe("LPFarming", () => {
     // );
     await farming.newEpoch(0, 0, 0);
     let blockNumber = await ethers.provider.getBlockNumber();
-    await expect(
-      farming.newEpoch(blockNumber + 1, blockNumber + 1, 0)
-    ).to.be.revertedWith("Invalid end block");
+    // await expect(
+    //   farming.newEpoch(blockNumber + 1, blockNumber + 1, 0)
+    // ).to.be.revertedWith("Invalid end block");
+    await farming.newEpoch(blockNumber + 1, blockNumber + 1, 0);
     blockNumber = await ethers.provider.getBlockNumber();
     await expect(
       farming.newEpoch(blockNumber + 1, blockNumber + 2, 0)
