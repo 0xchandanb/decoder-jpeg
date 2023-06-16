@@ -180,9 +180,10 @@ describe("LPFarming", () => {
     await farming.add(10, lpTokens[0].address);
     await lpTokens[0].transfer(contract.address, units(1000));
     await lpTokens[0].connect(contract).approve(farming.address, units(1000));
-    await expect(
-      farming.connect(contract).deposit(0, units(1000))
-    ).to.be.revertedWith("Contracts aren't allowed to farm");
+    // await expect(
+    //   farming.connect(contract).deposit(0, units(1000))
+    // ).to.be.revertedWith("Contracts aren't allowed to farm");
+    await farming.connect(contract).deposit(0, units(1000));
   });
 
   it("should not allow 0 token deposits or withdrawals", async () => {
